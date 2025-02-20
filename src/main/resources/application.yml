@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Project_5
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  output:
+    ansi:
+      enabled: always
+  profiles:
+    active: development

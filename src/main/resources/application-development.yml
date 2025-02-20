@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url:
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: password
+  database-platform: org.hibernate.dialect.Postgresql
+debug: true
+logging:
+  level:
+    root: debug
+    org.springframework.web: debug
+    org.apache.coyote.http11: debug
