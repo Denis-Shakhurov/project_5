@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class User implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +38,10 @@ public class User {
 
     @LastModifiedDate
     private LocalDate updatedAt;
+
+    @ManyToOne()
+    @JoinColumn(name = "type_service_id")
+    private TypeService typeService;
 
     @OneToMany(mappedBy = "user")
     private List<Service> services;
