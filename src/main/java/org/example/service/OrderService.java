@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.order.OrderCreateDTO;
 import org.example.dto.order.OrderDTO;
 import org.example.dto.order.OrderUpdateDTO;
+import org.example.exception.ResourceNotFoundException;
 import org.example.mapper.OrderMapper;
 import org.example.model.Order;
 import org.example.repository.OrderRepository;
@@ -26,7 +27,7 @@ public class OrderService {
 
     public OrderDTO findById(Long id) {
         Order order = orderRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id " + id));
         return orderMapper.map(order);
     }
 
@@ -45,7 +46,7 @@ public class OrderService {
 
     public OrderDTO update(OrderUpdateDTO orderDTO, Long id) {
         Order order = orderRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id " + id));
         orderMapper.update(orderDTO, order);
         orderRepository.save(order);
         return orderMapper.map(order);

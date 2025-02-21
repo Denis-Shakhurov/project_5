@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.typeservice.TypeServiceCreateDTO;
 import org.example.dto.typeservice.TypeServiceDTO;
 import org.example.dto.typeservice.TypeServiceUpdateDTO;
+import org.example.exception.ResourceNotFoundException;
 import org.example.mapper.TypeServiceMapper;
 import org.example.model.TypeService;
 import org.example.repository.TypeServiceRepository;
@@ -32,7 +33,7 @@ public class TypeServiceService {
 
     public TypeServiceDTO update(TypeServiceUpdateDTO dto, Long id) {
         TypeService typeService = typeServiceRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("TypeService not found with id " + id));
         typeServiceMapper.update(dto, typeService);
         typeServiceRepository.save(typeService);
         return typeServiceMapper.map(typeService);

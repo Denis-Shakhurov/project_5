@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.user.UserCreateDTO;
 import org.example.dto.user.UserDTO;
 import org.example.dto.user.UserUpdateDTO;
+import org.example.exception.ResourceNotFoundException;
 import org.example.mapper.UserMapper;
 import org.example.model.User;
 import org.example.repository.UserRepository;
@@ -17,7 +18,7 @@ public class UserService {
 
     public UserDTO findById(Long id) {
         User user = userRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         return userMapper.map(user);
     }
 
@@ -29,7 +30,7 @@ public class UserService {
 
     public UserDTO update(UserUpdateDTO dto, Long id) {
         User user = userRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         userMapper.update(dto, user);
         user = userRepository.save(user);
         return userMapper.map(user);

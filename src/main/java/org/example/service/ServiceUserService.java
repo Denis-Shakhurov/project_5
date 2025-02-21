@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.service.ServiceCreateDTO;
 import org.example.dto.service.ServiceDTO;
 import org.example.dto.service.ServiceUpdateDTO;
+import org.example.exception.ResourceNotFoundException;
 import org.example.mapper.ServiceUserMapper;
 import org.example.model.ServiceUser;
 import org.example.repository.ServiceUserRepository;
@@ -32,7 +33,7 @@ public class ServiceUserService {
 
     public void update(ServiceUpdateDTO dto, Long id) {
         ServiceUser serviceUser = serviceUserRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("ServiceUser not found with id " + id));
         serviceUserRepository.save(serviceUser);
     }
 
