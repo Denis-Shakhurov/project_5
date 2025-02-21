@@ -1,13 +1,13 @@
 package org.example.repository;
 
-import org.example.model.Order;
+import org.example.model.ServiceUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface ServiceUserRepository extends JpaRepository<ServiceUser, Long> {
 
-    public List<Order> findByUserId(Long userId);
+    public List<ServiceUser> findByUserId(Long userId);
 }

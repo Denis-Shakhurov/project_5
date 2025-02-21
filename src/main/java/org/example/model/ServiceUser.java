@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "services")
-public class Service implements BaseEntity{
+public class ServiceUser implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,6 +34,6 @@ public class Service implements BaseEntity{
     private LocalDate updateAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "user_master_id")
+    private UserMaster userMaster;
 }

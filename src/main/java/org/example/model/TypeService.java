@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.mapper.UserMapper;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public class TypeService {
     private String name;
 
     @OneToMany(mappedBy = "typeService")
-    private List<User> users;
+    private List<UserMaster> userMasters;
 }

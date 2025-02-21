@@ -1,9 +1,10 @@
 package org.example.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.example.dto.user.UserCreateDTO;
+import org.example.dto.user.UserDTO;
+import org.example.dto.user.UserUpdateDTO;
+import org.example.model.User;
+import org.mapstruct.*;
 
 @Mapper(
         uses = { JsonNullableMapper.class, ReferenceMapper.class},
@@ -12,5 +13,11 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public abstract class UserMapper {
+    public abstract UserDTO map(User model);
 
+    public abstract User map(UserDTO dto);
+
+    public abstract User map(UserCreateDTO dto);
+
+    public abstract void update(UserUpdateDTO dto, @MappingTarget User model);
 }

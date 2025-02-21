@@ -1,7 +1,10 @@
 package org.example.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,11 +14,10 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class User implements BaseEntity{
+@AllArgsConstructor
+@Table(name = "user_masters")
+public class UserMaster implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,11 +40,15 @@ public class User implements BaseEntity{
     @LastModifiedDate
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders;
+    @ManyToOne()
+    @JoinColumn(name = "type_service_id")
+    private TypeService typeService;
 
-    public void addOrder(Order order) {
-        order.setUser(this);
-        this.orders.add(order);
+    @OneToMany(mappedBy = "userMaster")
+    private List<ServiceUser> serviceUsers;
+
+    public void addServices(ServiceUser serviceUser) {
+        serviceUser.setUserMaster(this);
+        this.serviceUsers.add(serviceUser);
     }
 }
