@@ -38,6 +38,7 @@ public class User implements BaseEntity, UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false)
     private UserStatus userStatus;
 
