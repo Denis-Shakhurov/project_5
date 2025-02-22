@@ -10,11 +10,20 @@ import org.example.model.User;
 import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
+    public List<UserDTO> findAll() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(userMapper::map)
+                .toList();
+    }
 
     public UserDTO findById(Long id) {
         User user = userRepository.findById(id)

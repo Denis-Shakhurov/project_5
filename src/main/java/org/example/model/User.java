@@ -59,15 +59,15 @@ public class User implements BaseEntity, UserDetails {
     private TypeService typeService;
 
 
-    public void addOrder(Order order) {
-        order.setUser(this);
-        this.orders.add(order);
-    }
+//    public void addOrder(Order order) {
+//        order.setUser(this);
+//        orders.add(order);
+//    }
 
-    public void addServices(ServiceUser serviceUser) {
-        serviceUser.setUser(this);
-        this.serviceUsers.add(serviceUser);
-    }
+//    public void addServices(ServiceUser serviceUser) {
+//        serviceUser.setUser(this);
+//        serviceUsers.add(serviceUser);
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -77,6 +77,11 @@ public class User implements BaseEntity, UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

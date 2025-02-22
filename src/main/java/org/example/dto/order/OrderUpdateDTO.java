@@ -4,13 +4,13 @@ import lombok.Getter;
 import org.example.model.OrderStatus;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 public class OrderUpdateDTO {
     private JsonNullable<OrderStatus> status;
 
-    private JsonNullable<LocalDate> orderDate;
+    private JsonNullable<LocalDateTime> orderDate;
 
     private JsonNullable<Double> price;
 }
