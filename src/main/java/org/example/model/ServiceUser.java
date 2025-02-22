@@ -36,6 +36,6 @@ public class ServiceUser implements BaseEntity{
     private LocalDate updateAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_master_id")
-    private UserMaster userMaster;
+    @JoinColumn(name = "user_id")
+    private User user;
 }

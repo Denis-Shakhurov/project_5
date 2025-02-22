@@ -38,6 +38,9 @@ public class User implements BaseEntity, UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "user_status", nullable = false)
+    private UserStatus userStatus;
+
     @CreatedDate
     private LocalDate createdAt;
 
@@ -47,9 +50,22 @@ public class User implements BaseEntity, UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "user")
+    private List<ServiceUser> serviceUsers;
+
+    @ManyToOne()
+    @JoinColumn(name = "type_service_id")
+    private TypeService typeService;
+
+
     public void addOrder(Order order) {
         order.setUser(this);
         this.orders.add(order);
+    }
+
+    public void addServices(ServiceUser serviceUser) {
+        serviceUser.setUser(this);
+        this.serviceUsers.add(serviceUser);
     }
 
     @Override

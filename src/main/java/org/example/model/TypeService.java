@@ -25,5 +25,5 @@ public class TypeService {
     private String name;
 
     @OneToMany(mappedBy = "typeService")
-    private List<UserMaster> userMasters;
+    private List<User> users;
 }
