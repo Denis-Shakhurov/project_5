@@ -5,6 +5,13 @@ spring:
     username: root
     password: password
   database-platform: org.hibernate.dialect.Postgresql
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    enabled: true
+    encoding: UTF-8
+
 debug: true
 logging:
   level:

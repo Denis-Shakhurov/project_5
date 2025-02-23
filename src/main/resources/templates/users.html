@@ -38,11 +38,11 @@
                 </tr>
                 </tbody>
             </table>
-            <div id="pages">Pages:
-                <button type="button" class="btn btn-outline-primary" th:each="pageNumber : ${pageNumbers}">
-                    <a th:href="@{/(page=${pageNumber},limit=10)}" th:text="${pageNumber}" th:classappend="${pageNumber == currentPage? 'active_page' : ''}"/>
-                </button>
-            </div>
+<!--            <div id="pages">Pages:-->
+<!--                <button type="button" class="btn btn-outline-primary" th:each="pageNumber : ${pageNumbers}">-->
+<!--                    <a th:href="@{/(page=${pageNumber},limit=10)}" th:text="${pageNumber}" th:classappend="${pageNumber == currentPage? 'active_page' : ''}"/>-->
+<!--                </button>-->
+<!--            </div>-->
             <h2 class="mb-3">Add new task:</h2>
             <div class="border border-primary">
                 <form class="row g-3">
@@ -59,9 +59,9 @@
                             <option value="PAUSED">PAUSED</option>
                         </datalist>
                     </div>
-                    <div class="col-12">
-                        <button type="submit" id="createButton" th:onclick="createTask()" class="btn btn-primary">Add</button>
-                    </div>
+<!--                    <div class="col-12">-->
+<!--                        <button type="submit" id="createButton" th:onclick="createTask()" class="btn btn-primary">Add</button>-->
+<!--                    </div>-->
                 </form>
             </div>
         </div>
