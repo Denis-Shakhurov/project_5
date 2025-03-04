@@ -2,11 +2,13 @@ package org.example.dto.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
+import lombok.Setter;
 import org.example.model.OrderStatus;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 public class OrderDTO {
     private Long id;
 

@@ -2,10 +2,12 @@ package org.example.dto.service;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 public class ServiceDTO {
     private Long id;
 

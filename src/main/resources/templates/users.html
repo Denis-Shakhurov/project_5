@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Todo</title>
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -19,15 +19,16 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
-                    <th>Delete</th>
+                    <th>Create</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user, number : ${users}">
+                <tr th:each="user: ${users}">
                     <td th:text="${user.id}" />
                     <td th:text="${user.firstName}" />
                     <td th:text="${user.lastName}" />
                     <td th:text="${user.email}" />
+                    <td th:text="${user.createdAt}" />
 
 <!--                    <td>-->
 <!--                        <button class= "btn btn-primary" th:id="'edit_' + ${task.id}" th:onclick="'editTask(' + ${task.id} + ')'">edit</button>-->

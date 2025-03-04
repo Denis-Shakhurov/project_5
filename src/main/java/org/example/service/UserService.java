@@ -8,7 +8,6 @@ import org.example.exception.ResourceNotFoundException;
 import org.example.mapper.UserMapper;
 import org.example.model.User;
 import org.example.repository.UserRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,8 +21,8 @@ public class UserService {
     private final UserMapper userMapper;
 
     public List<UserDTO> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<User> users = userRepository.findAll(pageable);
+        Pageable pageable = PageRequest.of(page - 1, size);
+        List<User> users = userRepository.findAll(pageable).getContent();
         return users.stream()
                 .map(userMapper::map)
                 .toList();
@@ -32,6 +31,12 @@ public class UserService {
     public UserDTO findById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+        return userMapper.map(user);
+    }
+
+    public UserDTO findByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email " + email));
         return userMapper.map(user);
     }
 

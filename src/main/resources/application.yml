@@ -1,6 +1,12 @@
 spring:
   application:
     name: Project_5
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: password
+  database-platform: org.hibernate.dialect.Postgresql
   jpa:
     generate-ddl: true
     show-sql: true
@@ -10,14 +16,21 @@ spring:
   output:
     ansi:
       enabled: always
-  profiles:
-    active: development
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
     mode: HTML
     enabled: true
-    encoding: UTF-8
+#    encoding: UTF-8
+#  jmx:
+#    enabled: false
+
+debug: true
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.apache.coyote.http11: info
 
 rsa:
   private-key: classpath:certs/private.pem

@@ -1,16 +1,11 @@
 package org.example.mapper;
 
-import lombok.RequiredArgsConstructor;
 import org.example.dto.user.UserCreateDTO;
 import org.example.dto.user.UserDTO;
 import org.example.dto.user.UserUpdateDTO;
 import org.example.model.User;
-import org.mapstruct.BeforeMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.example.model.UserStatus;
+import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -28,21 +23,27 @@ public abstract class UserMapper {
 
     public abstract User map(UserDTO dto);
 
+    @Mapping(target = "passwordDigest", source = "password")
     public abstract User map(UserCreateDTO dto);
 
+    @Mapping(target = "passwordDigest", source = "password")
     public abstract void update(UserUpdateDTO dto, @MappingTarget User model);
 
     @BeforeMapping
-    private void encryptPassword(UserCreateDTO dto) {
+    public void encryptPassword(UserCreateDTO dto) {
         String password = dto.getPassword();
         dto.setPassword(passwordEncoder.encode(password));
     }
 
     @BeforeMapping
-    private void encryptPassword(UserUpdateDTO dto, @MappingTarget User model) {
+    public void encryptPassword(UserUpdateDTO dto, @MappingTarget User model) {
         if (dto.getPassword() != null && dto.getPassword().isPresent()) {
             String password = dto.getPassword().get();
-            model.setPassword(passwordEncoder.encode(password));
+            model.setPasswordDigest(passwordEncoder.encode(password));
         }
+    }
+
+    public UserStatus toString(String status) {
+        return UserStatus.valueOf(status);
     }
 }

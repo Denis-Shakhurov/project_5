@@ -20,4 +20,6 @@ public class UserCreateDTO {
 
     @NotNull
     private String password;
+
+    private String userStatus;
 }

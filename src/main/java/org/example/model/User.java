@@ -36,7 +36,7 @@ public class User implements BaseEntity, UserDetails {
     private String email;
 
     @Column(nullable = false)
-    private String password;
+    private String passwordDigest;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false)
@@ -81,7 +81,7 @@ public class User implements BaseEntity, UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return passwordDigest;
     }
 
     @Override
